@@ -18,31 +18,25 @@ steps
 <li>
     By default all the request comming to your ec2 goes to 80 port for http and for https its redirect to port 443 so we can to redirect the req comming port 80 to some localhost where our app is running by sudo vi /etc/nginx/nignx.conf and then put this:
     <p>
-        events {
-    # Event directives...
-}
-
-http {
-server {
-listen 80;
-server_name your_ec2_url
-
-    location / {
-        proxy_pass http://localhost:8080;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-    }
-
-}
-
-</p>
+        http {
+            server {
+                listen 80;
+                server_name your_ec2_url
+            }
+            location / {
+                proxy_pass http://localhost:8080;
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+            }
+        }
+    </p>
 
 </li>
 </ul>
+
 ```bash
     chmod 700 file_name.pem
     ssh - file_name.pem @your_operating_system@your_ec2_public_IPv4
