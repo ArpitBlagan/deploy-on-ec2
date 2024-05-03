@@ -1,5 +1,5 @@
 This is for Pratice purpose where I follow the navie approch to deploy this backend app
-on aws ec2 instance.
+on aws ec2 ubuntu instance.
 steps
 
 <ul>
